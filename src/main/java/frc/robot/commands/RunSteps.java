@@ -89,6 +89,7 @@ public class RunSteps extends CommandBase {
         return false;
     }
 
+    //update any variables to uses during steps
     private void updateVariables() {
         robot.isButtonAPressed = joystick.getAButton();
         robot.isButtonBPressed = joystick.getBButton();

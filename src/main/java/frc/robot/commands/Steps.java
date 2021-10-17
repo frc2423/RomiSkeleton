@@ -18,8 +18,6 @@ public class Steps{
 
     public void step1() {
        robot.joystickDrive();
-       robot.setNumber("double", 3.5);
-       robot.setNumber("integer", 3);
     }
 
     public void startStep2() {

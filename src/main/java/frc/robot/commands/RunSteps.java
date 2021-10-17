@@ -6,20 +6,9 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import java.util.function.Supplier;
-import frc.robot.commands.Steps;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ArcadeDrive;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.OnBoardIO;
-import frc.robot.subsystems.OnBoardIO.ChannelMode;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
-import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.subsystems.RobotSystem;
+import frc.robot.NtHelper;
 
 public class RunSteps extends CommandBase {
     private Drivetrain drivetrain;
@@ -39,7 +28,8 @@ public class RunSteps extends CommandBase {
 
     // Called when the command is initially scheduled.
     @Override
-    public void initialize() {}
+    public void initialize() {
+    }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
@@ -63,15 +53,19 @@ public class RunSteps extends CommandBase {
         }
 
         if (robot.getNextStep() > -1) {
-            switch(robot.getNextStep()) {
-                case 1: steps.startStep1();
+            switch (robot.getNextStep()) {
+                case 1:
+                    steps.startStep1();
                     break;
-                case 2: steps.startStep2();
+                case 2:
+                    steps.startStep2();
                     break;
-                case 3: steps.startStep3();
+                case 3:
+                    steps.startStep3();
                     break;
-                case 4: steps.startStep4();
-                    break; 
+                case 4:
+                    steps.startStep4();
+                    break;
             }
             step = robot.getNextStep();
             robot.setStep(-1);
@@ -80,7 +74,8 @@ public class RunSteps extends CommandBase {
 
     // Called once the command ends or is interrupted.
     @Override
-    public void end(boolean interrupted) {}
+    public void end(boolean interrupted) {
+    }
 
     // Returns true when the command should end.
     @Override
@@ -88,7 +83,7 @@ public class RunSteps extends CommandBase {
         return false;
     }
 
-    //update any variables to uses during steps
+    // update any variables to uses during steps
     private void updateVariables() {
         robot.isButtonAPressed = joystick.getAButton();
         robot.isButtonBPressed = joystick.getBButton();
@@ -99,5 +94,14 @@ public class RunSteps extends CommandBase {
         robot.accelY = drivetrain.getAccelY();
         robot.joystickXAxis = joystick.getRawAxis(0);
         robot.joystickYAxis = joystick.getRawAxis(1);
+        NtHelper.setNumber("/robot/angle", robot.angle);
+        NtHelper.setNumber("/robot/speed", robot.speed);
+        NtHelper.setNumber("/robot/distance", robot.distance);
+        NtHelper.setNumber("/robot/joystickXAxis", robot.joystickXAxis);
+        NtHelper.setNumber("/robot/joystickYAxis", robot.joystickYAxis);
+        NtHelper.setNumber("/robot/accelX", robot.accelX);
+        NtHelper.setNumber("/robot/accelY", robot.accelY);
+        NtHelper.setBoolean("/robot/isButtonAPressed", robot.isButtonAPressed);
+        NtHelper.setBoolean("/robot/isButtonBPressed", robot.isButtonBPressed);
     }
 }

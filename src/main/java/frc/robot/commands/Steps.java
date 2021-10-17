@@ -18,13 +18,17 @@ public class Steps{
 
     public void step1() {
        robot.joystickDrive();
+       if (robot.time > 3) {
+           robot.setStep(2);
+           robot.resetTimer();
+       }
     }
 
     public void startStep2() {
     }
 
     public void step2() {
-        robot.setStep(3);
+        
     }
 
     public void startStep3() {

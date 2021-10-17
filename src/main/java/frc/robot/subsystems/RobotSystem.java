@@ -4,8 +4,8 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Timer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,14 +23,21 @@ public class RobotSystem{
     public double accelY = 0;
     public double joystickXAxis = 0;
     public double joystickYAxis = 0;
+    public double time = 0;
     private Map<String, String> mapString = new HashMap<String, String>();
     private Map<String, Number> mapNumber = new HashMap<String, Number>();
     private Map<String, Boolean> mapBoolean = new HashMap<String, Boolean>();
     private XboxController joystick;
+    private Timer timer;
 
-    public RobotSystem(Drivetrain drive, XboxController joy) {
+    public RobotSystem(Drivetrain drive, XboxController joy, Timer timer) {
         drivetrain = drive;
         joystick = joy;
+        this.timer = timer;
+    }
+
+    public void resetTimer() {
+        timer.reset();
     }
 
     public void setTurn(double speed) {

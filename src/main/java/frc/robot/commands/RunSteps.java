@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.RobotSystem;
 import frc.robot.NtHelper;
@@ -16,19 +17,22 @@ public class RunSteps extends CommandBase {
     private int step;
     private Steps steps;
     private RobotSystem robot;
+    private Timer timer = new Timer();
 
     public RunSteps(Drivetrain drive, XboxController joy) {
         drivetrain = drive;
         joystick = joy;
         step = 0;
-        robot = new RobotSystem(drivetrain, joystick);
+        robot = new RobotSystem(drivetrain, joystick, timer);
         steps = new Steps(robot);
         addRequirements(drivetrain);
+        timer.start();
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        timer.reset();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -94,6 +98,7 @@ public class RunSteps extends CommandBase {
         robot.accelY = drivetrain.getAccelY();
         robot.joystickXAxis = joystick.getRawAxis(0);
         robot.joystickYAxis = joystick.getRawAxis(1);
+        robot.time = timer.get();
         NtHelper.setNumber("/robot/angle", robot.angle);
         NtHelper.setNumber("/robot/speed", robot.speed);
         NtHelper.setNumber("/robot/distance", robot.distance);
@@ -101,6 +106,8 @@ public class RunSteps extends CommandBase {
         NtHelper.setNumber("/robot/joystickYAxis", robot.joystickYAxis);
         NtHelper.setNumber("/robot/accelX", robot.accelX);
         NtHelper.setNumber("/robot/accelY", robot.accelY);
+        NtHelper.setNumber("/robot/time", robot.time);
+        NtHelper.setNumber("/robot/step", step);
         NtHelper.setBoolean("/robot/isButtonAPressed", robot.isButtonAPressed);
         NtHelper.setBoolean("/robot/isButtonBPressed", robot.isButtonBPressed);
     }

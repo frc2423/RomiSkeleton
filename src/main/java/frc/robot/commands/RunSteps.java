@@ -33,6 +33,7 @@ public class RunSteps extends CommandBase {
     @Override
     public void initialize() {
         timer.reset();
+        robot.setStep(1);
     }
 
     // Called every time the scheduler runs while the command is scheduled.

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 
 import java.util.HashMap;
 import java.util.Map;
+import frc.robot.NtHelper;
 
 public class RobotSystem{
     private final Drivetrain drivetrain;
@@ -23,7 +24,7 @@ public class RobotSystem{
     public double joystickXAxis = 0;
     public double joystickYAxis = 0;
     private Map<String, String> mapString = new HashMap<String, String>();
-    private Map<String, Double> mapDouble = new HashMap<String, Double>();
+    private Map<String, Number> mapNumber = new HashMap<String, Number>();
     private Map<String, Boolean> mapBoolean = new HashMap<String, Boolean>();
     private XboxController joystick;
 
@@ -54,11 +55,12 @@ public class RobotSystem{
         return nextStep;
     }
 
-    public double getDouble(String name) {
-        return mapDouble.get(name);
+    public Number getNumber(String name) {
+        return mapNumber.get(name);
     }
-    public void setDouble(String name, Double value) {
-        mapDouble.put(name, value);
+    public void setNumber(String name, Number value) {
+        mapNumber.put(name, value);
+        NtHelper.setNumber("/variables/" + name, value);
     }
 
     public Boolean getBoolean(String name) {
@@ -66,6 +68,7 @@ public class RobotSystem{
     }
     public void setBoolean(String name, Boolean value) {
         mapBoolean.put(name, value);
+        NtHelper.setBoolean("/variables/" + name, value);
     }
 
     public String getString(String name) {
@@ -73,6 +76,7 @@ public class RobotSystem{
     }
     public void setString(String name, String value) {
         mapString.put(name, value);
+        NtHelper.setString("/variables/" + name, value);
     }
 
 

@@ -24,14 +24,14 @@ import frc.robot.subsystems.RobotSystem;
 public class RunSteps extends CommandBase {
     private Drivetrain drivetrain;
     private XboxController joystick;
-    private int state;
+    private int step;
     private Steps steps;
     private RobotSystem robot;
 
     public RunSteps(Drivetrain drive, XboxController joy) {
         drivetrain = drive;
         joystick = joy;
-        state = 0;
+        step = 0;
         robot = new RobotSystem(drivetrain, joystick);
         steps = new Steps(robot);
         addRequirements(drivetrain);
@@ -45,37 +45,36 @@ public class RunSteps extends CommandBase {
     @Override
     public void execute() {
         updateVariables();
-        switch (state) {
-            case 0:
-                break;
+        switch (step) {
             case 1:
-                steps.stateOne();
+                steps.step1();
                 break;
             case 2:
-                steps.stateTwo();
+                steps.step2();
                 break;
             case 3:
-                steps.stateThree();
+                steps.step3();
                 break;
             case 4:
-                steps.stateFour();
+                steps.step4();
                 break;
             default:
                 break;
         }
 
-        if (robot.getState() != state) {
-            switch(robot.getState()) {
-                case 1: steps.initStateOne();
+        if (robot.getNextStep() > -1) {
+            switch(robot.getNextStep()) {
+                case 1: steps.startStep1();
                     break;
-                case 2: steps.initStateTwo();
+                case 2: steps.startStep2();
                     break;
-                case 3: steps.initStateThree();
+                case 3: steps.startStep3();
                     break;
-                case 4: steps.initStateFour();
+                case 4: steps.startStep4();
                     break; 
             }
-            state = robot.getState();
+            step = robot.getNextStep();
+            robot.setStep(-1);
         }
     }
 
@@ -93,9 +92,12 @@ public class RunSteps extends CommandBase {
     private void updateVariables() {
         robot.isButtonAPressed = joystick.getAButton();
         robot.isButtonBPressed = joystick.getBButton();
-        robot.robotAngle = drivetrain.getGyroAngleZ();
-        robot.robotSpeed = drivetrain.getAverageDistance();
-        robot.xaxis = drivetrain.getAccelX();
-        robot.yaxis = drivetrain.getAccelY();
+        robot.angle = drivetrain.getGyroAngleZ();
+        robot.speed = drivetrain.getAverageSpeedInchesPerSecond();
+        robot.distance = drivetrain.getAverageDistanceInch();
+        robot.accelX = drivetrain.getAccelX();
+        robot.accelY = drivetrain.getAccelY();
+        robot.joystickXAxis = joystick.getRawAxis(0);
+        robot.joystickYAxis = joystick.getRawAxis(1);
     }
 }

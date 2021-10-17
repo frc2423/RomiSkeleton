@@ -7,42 +7,47 @@ package frc.robot.commands;
 import frc.robot.subsystems.RobotSystem;
 
 public class Steps{
+
     RobotSystem robot;
     public Steps(RobotSystem robotSystem) {
         robot = robotSystem;
     }
 
-    public void initStateOne() {
-
+    public void startStep1() {
+        System.out.println("start 1");
     }
 
-    public void stateOne() {
+    public void step1() {
        robot.joystickDrive();
-       //robot.setSpeed(.3);
+       System.out.println("step 1");
+       robot.setStep(2);
     }
 
-    public void initStateTwo() {
-        
+    public void startStep2() {
+        System.out.println("start 2");
     }
 
-    public void stateTwo() {
-        
+    public void step2() {
+        System.out.println("step 2");
+        robot.setStep(3);
     }
 
-    public void initStateThree() {
-        
+    public void startStep3() {
+        System.out.println("start 3");
     }
 
-    public void stateThree() {
-        
+    public void step3() {
+        System.out.println("step 3");
+        robot.setStep(4);
     }
 
-    public void initStateFour() {
-        
+    public void startStep4() {
+        System.out.println("start 4");
     }
 
-    public void stateFour() {
-        
+    public void step4() {
+        System.out.println("step 4");
+        robot.setStep(1);
     }
 
 

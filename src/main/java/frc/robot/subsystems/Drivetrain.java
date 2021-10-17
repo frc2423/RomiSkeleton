@@ -75,6 +75,18 @@ public class Drivetrain extends SubsystemBase {
     return (getLeftDistanceInch() + getRightDistanceInch()) / 2.0;
   }
 
+  public double getLeftSpeedInchesPerSecond() {
+    return m_leftEncoder.getRate();
+  }
+
+  public double getRightSpeedInchesPerSecond() {
+    return m_rightEncoder.getRate();
+  }
+
+  public double getAverageSpeedInchesPerSecond() {
+    return (getLeftSpeedInchesPerSecond() + getRightSpeedInchesPerSecond()) / 2.0;
+  }
+
   /**
    * The acceleration in the X-axis.
    *

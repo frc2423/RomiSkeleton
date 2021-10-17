@@ -12,13 +12,16 @@ import java.util.Map;
 
 public class RobotSystem{
     private final Drivetrain drivetrain;
-    private int state = 1;
+    private int nextStep = 1;
     public boolean isButtonAPressed = false;
     public boolean isButtonBPressed = false;
-    public double robotAngle = 0;
-    public double robotSpeed = 0;
-    public double xaxis = 0;
-    public double yaxis = 0;
+    public double angle = 0;
+    public double speed = 0;
+    public double distance = 0;
+    public double accelX = 0;
+    public double accelY = 0;
+    public double joystickXAxis = 0;
+    public double joystickYAxis = 0;
     private Map<String, String> mapString = new HashMap<String, String>();
     private Map<String, Double> mapDouble = new HashMap<String, Double>();
     private Map<String, Boolean> mapBoolean = new HashMap<String, Boolean>();
@@ -43,11 +46,12 @@ public class RobotSystem{
         drivetrain.arcadeDrive(joystick.getRawAxis(1), joystick.getRawAxis(0));
     }
     
-    public void setState(int newState) {
-        state = newState;
+    public void setStep(int nextStep) {
+        this.nextStep = nextStep;
     }
-    public int getState() {
-        return state;
+
+    public int getNextStep() {
+        return nextStep;
     }
 
     public double getDouble(String name) {

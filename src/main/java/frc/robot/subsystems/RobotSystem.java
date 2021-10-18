@@ -16,6 +16,13 @@ public class RobotSystem {
     private int nextStep = 1;
     public boolean isButtonAPressed = false;
     public boolean isButtonBPressed = false;
+    public boolean isButtonXPressed = false;
+    public boolean isButtonYPressed = false;
+    public boolean wasButtonAReleased = false;
+    public boolean wasButtonBReleased = false;
+    public boolean wasButtonXReleased = false;
+    public boolean wasButtonYReleased = false;
+
     public double angle = 0;
     public double speed = 0;
     public double distance = 0;

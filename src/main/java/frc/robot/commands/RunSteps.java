@@ -12,6 +12,7 @@ import frc.robot.subsystems.RobotSystem;
 import frc.robot.NtHelper;
 
 
+
 public class RunSteps extends CommandBase {
     private Drivetrain drivetrain;
     private XboxController joystick;
@@ -93,11 +94,15 @@ public class RunSteps extends CommandBase {
     private void updateVariables() {
         robot.isButtonAPressed = joystick.getAButton();
         robot.isButtonBPressed = joystick.getBButton();
+        robot.isButtonXPressed = joystick.getXButton();
+        robot.isButtonYPressed = joystick.getYButton();
+        robot.wasButtonAReleased = joystick.getAButtonReleased();
+        robot.wasButtonBReleased = joystick.getBButtonReleased();
+        robot.wasButtonXReleased = joystick.getXButtonReleased();
+        robot.wasButtonYReleased = joystick.getYButtonReleased();
         robot.angle = drivetrain.getGyroAngleZ();
         robot.speed = drivetrain.getAverageSpeedInchesPerSecond();
         robot.distance = drivetrain.getAverageDistanceInch();
-        // robot.accelX = drivetrain.getAccelX();
-        // robot.accelY = drivetrain.getAccelY();
         robot.joystickXAxis = joystick.getRawAxis(0);
         robot.joystickYAxis = joystick.getRawAxis(1);
         robot.time = timer.get();
@@ -106,11 +111,15 @@ public class RunSteps extends CommandBase {
         NtHelper.setNumber("/robot/distance", robot.distance);
         NtHelper.setNumber("/robot/joystickXAxis", robot.joystickXAxis);
         NtHelper.setNumber("/robot/joystickYAxis", robot.joystickYAxis);
-        // NtHelper.setNumber("/robot/accelX", robot.accelX);
-        // NtHelper.setNumber("/robot/accelY", robot.accelY);
         NtHelper.setNumber("/robot/time", robot.time);
         NtHelper.setNumber("/robot/step", step);
         NtHelper.setBoolean("/robot/isButtonAPressed", robot.isButtonAPressed);
         NtHelper.setBoolean("/robot/isButtonBPressed", robot.isButtonBPressed);
+        NtHelper.setBoolean("/robot/isButtonXPressed", robot.isButtonXPressed);
+        NtHelper.setBoolean("/robot/isButtonYPressed", robot.isButtonYPressed);
+        NtHelper.setBoolean("/robot/wasButtonAReleased", robot.wasButtonAReleased);
+        NtHelper.setBoolean("/robot/wasButtonBReleased", robot.wasButtonBReleased);
+        NtHelper.setBoolean("/robot/wasButtonXReleased", robot.wasButtonXReleased);
+        NtHelper.setBoolean("/robot/wasButtonYReleased", robot.wasButtonYReleased);
     }
 }

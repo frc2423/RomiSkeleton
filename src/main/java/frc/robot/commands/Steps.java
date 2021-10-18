@@ -15,13 +15,15 @@ public class Steps {
     }
 
     public void startStep1() {
-    }
-
-    public void step1() {
        
     }
 
+    public void step1() {
+
+    }
+
     public void startStep2() {
+        
     }
 
     public void step2() {
@@ -29,18 +31,17 @@ public class Steps {
     }
 
     public void startStep3() {
-        
+
     }
 
     public void step3() {
-
+        
     }
 
     public void startStep4() {
     }
 
     public void step4() {
-
     }
 
 }

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.RobotSystem;
 import frc.robot.NtHelper;
 
+
 public class RunSteps extends CommandBase {
     private Drivetrain drivetrain;
     private XboxController joystick;
@@ -23,7 +24,7 @@ public class RunSteps extends CommandBase {
         drivetrain = drive;
         joystick = joy;
         step = 0;
-        robot = new RobotSystem(drivetrain, joystick, timer);
+        robot = new RobotSystem(drivetrain, timer);
         steps = new Steps(robot);
         addRequirements(drivetrain);
         timer.start();
@@ -95,8 +96,8 @@ public class RunSteps extends CommandBase {
         robot.angle = drivetrain.getGyroAngleZ();
         robot.speed = drivetrain.getAverageSpeedInchesPerSecond();
         robot.distance = drivetrain.getAverageDistanceInch();
-        robot.accelX = drivetrain.getAccelX();
-        robot.accelY = drivetrain.getAccelY();
+        // robot.accelX = drivetrain.getAccelX();
+        // robot.accelY = drivetrain.getAccelY();
         robot.joystickXAxis = joystick.getRawAxis(0);
         robot.joystickYAxis = joystick.getRawAxis(1);
         robot.time = timer.get();
@@ -105,8 +106,8 @@ public class RunSteps extends CommandBase {
         NtHelper.setNumber("/robot/distance", robot.distance);
         NtHelper.setNumber("/robot/joystickXAxis", robot.joystickXAxis);
         NtHelper.setNumber("/robot/joystickYAxis", robot.joystickYAxis);
-        NtHelper.setNumber("/robot/accelX", robot.accelX);
-        NtHelper.setNumber("/robot/accelY", robot.accelY);
+        // NtHelper.setNumber("/robot/accelX", robot.accelX);
+        // NtHelper.setNumber("/robot/accelY", robot.accelY);
         NtHelper.setNumber("/robot/time", robot.time);
         NtHelper.setNumber("/robot/step", step);
         NtHelper.setBoolean("/robot/isButtonAPressed", robot.isButtonAPressed);

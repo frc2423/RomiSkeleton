@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.sensors.RomiGyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer.Range;
 
 public class Drivetrain extends SubsystemBase {
   private static final double kCountsPerRevolution = 1440.0;
@@ -32,7 +33,7 @@ public class Drivetrain extends SubsystemBase {
   private final RomiGyro m_gyro = new RomiGyro();
 
   // Set up the BuiltInAccelerometer
-  private final BuiltInAccelerometer m_accelerometer = new BuiltInAccelerometer();
+  private final BuiltInAccelerometer m_accelerometer = new BuiltInAccelerometer(Range.k2G);
 
   /** Creates a new Drivetrain. */
   public Drivetrain() {

@@ -12,8 +12,9 @@ RUN sudo apt-get update && \
     mv ./WPILib_Linux-2021.3.1 ./2021 && \
     cd 2021 && \
     tar -xf WPILib_Linux-2021.3.1-artifacts.tar.gz && \
-    cd tools && \
-    java -jar ToolsUpdater.jar
+    cd tools
+    # cd tools && \
+    # java -jar ToolsUpdater.jar
 
 
 # Install custom tools, runtime, etc. using apt-get

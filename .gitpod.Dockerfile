@@ -7,12 +7,13 @@ RUN sudo apt-get update && \
     sudo rm -rf /var/lib/apt/lists/* && \
     cd ~ && \
     mkdir wpilib && cd wpilib && \
-    mkdir 2021 && cd 2021 && \
     wget https://github.com/wpilibsuite/allwpilib/releases/download/v2021.3.1/WPILib_Linux-2021.3.1.tar.gz && \ 
     tar -xf WPILib_Linux-2021.3.1.tar.gz && \
+    mv ./WPILib_Linux-2021.3.1 ./2021 && \
+    cd 2021 && \
+    tar -xf WPILib_Linux-2021.3.1-artifacts.tar.gz && \
     cd tools && \
     java -jar ToolsUpdater.jar
-    
 
 
 # Install custom tools, runtime, etc. using apt-get

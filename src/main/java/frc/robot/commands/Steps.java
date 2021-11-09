@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.subsystems.RobotSystem;
 
 public class Steps {
@@ -19,7 +20,10 @@ public class Steps {
     }
 
     public void step1() {
-
+robot.drive(1,0);
+if(robot.isButtonAPressed){
+    robot.setStep(2);
+}
     }
 
     public void startStep2() {
@@ -27,7 +31,10 @@ public class Steps {
     }
 
     public void step2() {
-
+        robot.drive(-1,0);
+        if(robot.isButtonBPressed){
+            robot.setStep(1);
+        }
     }
 
     public void startStep3() {

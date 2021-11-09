@@ -20,10 +20,8 @@ public class Steps {
     }
 
     public void step1() {
-robot.drive(1,0);
-if(robot.isButtonAPressed){
-    robot.setStep(2);
-}
+}    robot.drive(1,0);
+    robot.setstep(2)
     }
 
     public void startStep2() {
@@ -31,11 +29,10 @@ if(robot.isButtonAPressed){
     }
 
     public void step2() {
-        robot.drive(-1,0);
-        if(robot.isButtonBPressed){
-            robot.setStep(1);
+        robot.drive(0,0.5);
+        robot.setstep(1)
         }
-    }
+    
 
     public void startStep3() {
 
